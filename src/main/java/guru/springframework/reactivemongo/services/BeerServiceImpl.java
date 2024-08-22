@@ -1,6 +1,10 @@
 package guru.springframework.reactivemongo.services;
 
+import guru.springframework.reactivemongo.mappers.BeerMapper;
 import guru.springframework.reactivemongo.model.BeerDTO;
+import guru.springframework.reactivemongo.repositories.BeerRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 /**
@@ -10,10 +14,18 @@ import reactor.core.publisher.Mono;
  * @version 22/08/2024 - 18:25
  * @since jdk 1.21
  */
+@Service
+@RequiredArgsConstructor
 public class BeerServiceImpl implements BeerService {
+
+    private final BeerRepository beerRepository;
+    private final BeerMapper beerMapper;
+
     @Override
-    public Mono<BeerDTO> saveBeer(BeerDTO beerDTO) {
-        return null;
+    public Mono<BeerDTO> saveBeer(Mono<BeerDTO> beerDTO) {
+        return beerDTO.map(beerMapper::beerDtoToBeer)
+                        .flatMap(beerRepository::save)
+                        .map(beerMapper::beerToBeerDto);
     }
 
     @Override
