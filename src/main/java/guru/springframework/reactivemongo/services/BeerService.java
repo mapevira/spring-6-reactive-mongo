@@ -12,6 +12,8 @@ import reactor.core.publisher.Mono;
  * @since jdk 1.21
  */
 public interface BeerService {
+    Mono<BeerDTO> findFirstByBeerName(String beerName);
+
     Flux<BeerDTO> listBeers();
     Mono<BeerDTO> saveBeer(Mono<BeerDTO> beerDto);
 
