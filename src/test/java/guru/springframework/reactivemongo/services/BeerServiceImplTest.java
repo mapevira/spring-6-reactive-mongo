@@ -21,7 +21,7 @@ import static org.awaitility.Awaitility.await;
 
 @SpringBootTest
 @Slf4j
-class BeerServiceImplTest {
+public class BeerServiceImplTest {
 
     @Autowired
     BeerService beerService;
