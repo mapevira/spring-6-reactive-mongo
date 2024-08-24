@@ -31,6 +31,7 @@ public class BeerRouterConfig {
         return route()
                 .GET(BEER_PATH, accept(MediaType.APPLICATION_JSON), handler::listBeers)
                 .GET(BEER_PATH_ID, accept(MediaType.APPLICATION_JSON), handler::getBeerById)
+                .POST(BEER_PATH, accept(MediaType.APPLICATION_JSON), handler::createNewBeer)
                 .build();
     }
 
