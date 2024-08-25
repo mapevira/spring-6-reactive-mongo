@@ -2,6 +2,7 @@ package guru.springframework.reactivemongo.repositories;
 
 import guru.springframework.reactivemongo.domain.Customer;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import reactor.core.publisher.Mono;
 
 /**
  * Created by jt, Spring Framework Guru.
@@ -11,4 +12,7 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
  * @since jdk 1.21
  */
 public interface CustomerRepository extends ReactiveMongoRepository<Customer, String> {
+
+    Mono<Customer> findFirstByCustomerName(String customerName);
+
 }
